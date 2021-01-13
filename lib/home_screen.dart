@@ -71,7 +71,76 @@ class _HomeScreenState extends State<HomeScreen> {
                         fontWeight: FontWeight.w700,
                       ),
                     ),
+                    SizedBox(width: 10.0),
+                    Container(
+                      height: 50.0,
+                      width: 50.0,
+                      decoration: BoxDecoration(),
+                      child: SvgPicture.network(
+                        plInfo['plRankPic'],
+                        height: 400.0,
+                        width: 400.0,
+                      ),
+                    ),
                   ],
+                ),
+                SizedBox(height: 20.0),
+                Container(
+                  padding: EdgeInsets.all(20.0),
+                  // height: 200.0,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.black54,
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Overview',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 24.0,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      SizedBox(height: 10.0),
+                      myCustomRow(
+                        column1Name: "Ranked KD",
+                        column1Result: "${plInfo['plRankedKd']}",
+                      ),
+                      SizedBox(height: 10.0),
+                      myCustomRow(
+                        column1Name: "Ranked Deaths",
+                        column1Result: "${plInfo['plRankedDeaths']}",
+                      ),
+                      SizedBox(height: 10.0),
+                      myCustomRow(
+                        column1Name: "Ranked Kills",
+                        column1Result: "${plInfo['plRankedKills']}",
+                      ),
+                      SizedBox(height: 10.0),
+                      myCustomRow(
+                        column1Name: "Ranked Matches",
+                        column1Result: "${plInfo['plRankedMatches']}",
+                      ),
+                      SizedBox(height: 10.0),
+                      myCustomRow(
+                        column1Name: "Ranked Wins",
+                        column1Result: "${plInfo['plRankedWins']}",
+                      ),
+                      SizedBox(height: 10.0),
+                      myCustomRow(
+                        column1Name: "Ranked Losses",
+                        column1Result: "${plInfo['plRankedLosses']}",
+                      ),
+                      SizedBox(height: 10.0),
+                      myCustomRow(
+                        column1Name: "Rank",
+                        column1Result: "${plInfo['plRankText']}",
+                      ),
+                    ],
+                  ),
                 )
               ],
             ),
@@ -80,97 +149,40 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-}
 
-// Column(
-//             mainAxisAlignment: MainAxisAlignment.center,
-//             children: [
-//               Center(
-//                 child: Text(
-//                   "Player Name: ${plInfo['plName']}",
-//                   style: TextStyle(
-//                     fontSize: 24.0,
-//                     color: Colors.red,
-//                   ),
-//                 ),
-//               ),
-//               SizedBox(height: 20.0),
-//               Center(
-//                 child: Text(
-//                   "Player Ranked KD: ${plInfo['plRankedKd']}",
-//                   style: TextStyle(
-//                     fontSize: 24.0,
-//                     color: Colors.red,
-//                   ),
-//                 ),
-//               ),
-//               SizedBox(height: 20.0),
-//               Center(
-//                 child: Text(
-//                   "Player Ranked Deaths: ${plInfo['plRankedDeaths']}",
-//                   style: TextStyle(
-//                     fontSize: 24.0,
-//                     color: Colors.red,
-//                   ),
-//                 ),
-//               ),
-//               SizedBox(height: 20.0),
-//               Center(
-//                 child: Text(
-//                   "Player Ranked Kills: ${plInfo['plRankedKills']}",
-//                   style: TextStyle(
-//                     fontSize: 24.0,
-//                     color: Colors.red,
-//                   ),
-//                 ),
-//               ),
-//               SizedBox(height: 20.0),
-//               Center(
-//                 child: Text(
-//                   "Player Ranked Matches: ${plInfo['plRankedMatches']}",
-//                   style: TextStyle(
-//                     fontSize: 24.0,
-//                     color: Colors.red,
-//                   ),
-//                 ),
-//               ),
-//               SizedBox(height: 20.0),
-//               Center(
-//                 child: Text(
-//                   "Player Ranked Wins: ${plInfo['plRankedWins']}",
-//                   style: TextStyle(
-//                     fontSize: 24.0,
-//                     color: Colors.red,
-//                   ),
-//                 ),
-//               ),
-//               SizedBox(height: 20.0),
-//               Center(
-//                 child: Text(
-//                   "Player Ranked Losses: ${plInfo['plRankedLosses']}",
-//                   style: TextStyle(
-//                     fontSize: 24.0,
-//                     color: Colors.red,
-//                   ),
-//                 ),
-//               ),
-//               SizedBox(height: 20.0),
-//               Center(
-//                 child: Text(
-//                   "Player Rank Text: ${plInfo['plRankText']}",
-//                   style: TextStyle(
-//                     fontSize: 24.0,
-//                     color: Colors.red,
-//                   ),
-//                 ),
-//               ),
-//               SizedBox(height: 20.0),
-//               Center(
-//                 child: SvgPicture.network(
-//                   plInfo['plRankPic'],
-//                   height: 400.0,
-//                   width: 400.0,
-//                 ),
-//               ),
-//             ],
-//           ),
+  Row myCustomRow({
+    String column1Name,
+    String column1Result,
+  }) {
+    return Row(
+      children: [
+        Expanded(
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    column1Name,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18.0,
+                    ),
+                  ),
+                  Text(
+                    column1Result,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}

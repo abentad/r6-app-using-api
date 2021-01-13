@@ -86,7 +86,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   prefixIcon: Icon(Icons.account_box),
                   hintText: "Enter name",
                   hintStyle: TextStyle(
-                    color: Colors.grey.withOpacity(0.5),
+                    color: Colors.grey,
                     fontSize: 18.0,
                   ),
                   contentPadding: EdgeInsets.symmetric(
@@ -105,7 +105,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     borderSide: BorderSide(
                       color: Colors.black,
                     ),
-                    borderRadius: BorderRadius.circular(10.0),
+                    borderRadius: BorderRadius.circular(50.0),
                   ),
                 ),
                 onSubmitted: (value) {
@@ -139,7 +139,12 @@ class _SearchScreenState extends State<SearchScreen> {
                   print(
                       "pushed to loading screen name: ${_searchController.text}");
                 },
-                shape: StadiumBorder(),
+                shape: StadiumBorder(
+                  side: BorderSide(
+                    color: Colors.black,
+                    width: 2.0,
+                  ),
+                ),
                 height: 60.0,
                 minWidth: double.infinity,
                 color: Colors.white,

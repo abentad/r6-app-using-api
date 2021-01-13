@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:r6App/search_screen.dart';
+import 'package:r6App/signUp_screen.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
       title: 'R6App',
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.black,
-        // primarySwatch: Colors.black,
+        primarySwatch: Colors.teal,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: SearchScreen(),
