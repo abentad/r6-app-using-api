@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import "package:flutter/material.dart";
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
@@ -17,24 +16,17 @@ class LoadingScreen extends StatefulWidget {
 class _LoadingScreenState extends State<LoadingScreen> {
   Box box;
   var receivedData;
+
   @override
   void initState() {
     super.initState();
-    print('loading Screen got name ${widget.name}');
+    // print('loading Screen got name ${widget.name}');
     getInfo();
-  }
-
-  Future openBox() async {
-    var dir = await getApplicationDocumentsDirectory();
-    Hive.init(dir.path);
-    box = await Hive.openBox('data');
-    return;
   }
 
   void getInfo() async {
     try {
       receivedData = await getDataFromInternet(widget.name);
-      // final result = await InternetAddress.lookup('google.com');
       if (receivedData.isNotEmpty) {
         print('connected');
       }
@@ -42,9 +34,8 @@ class _LoadingScreenState extends State<LoadingScreen> {
       var dir = await getApplicationDocumentsDirectory();
       Hive.init(dir.path);
       box = await Hive.openBox('data');
-      await openBox();
+      // await openBox(box);
       var myMap = box.toMap().values.toList();
-
       print('not connected');
       Navigator.pushReplacement(
         context,

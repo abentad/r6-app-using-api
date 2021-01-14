@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:r6App/helpers/shared_prefs.dart';
 import 'package:r6App/screens/search_screen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 import 'loading_screen.dart';
 
 class DeciderScreen extends StatefulWidget {
@@ -16,13 +15,6 @@ class _DeciderScreenState extends State<DeciderScreen> {
   void initState() {
     super.initState();
     decide();
-  }
-
-  getStringValuesSF() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String stringValue = prefs.getString('searchTerm') ?? "empty";
-    print("from prefs $stringValue");
-    return stringValue;
   }
 
   void decide() async {
