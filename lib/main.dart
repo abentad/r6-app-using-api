@@ -11,13 +11,6 @@ void main() async {
       statusBarBrightness: Brightness.light,
     ),
   );
-  //for hive initilization
-  // WidgetsFlutterBinding.ensureInitialized();
-  // Directory document = await getApplicationDocumentsDirectory();
-  // Hive.init(document.path);
-  // await Hive.openBox<Map<String, String>>("info");
-
-  //
   runApp(MyApp());
 }
 

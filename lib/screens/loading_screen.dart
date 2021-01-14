@@ -11,8 +11,7 @@ class LoadingScreen extends StatefulWidget {
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
-  Map<String, String> plInfo;
-  Map<String, String> receivedData;
+  var receivedData;
   @override
   void initState() {
     super.initState();
@@ -21,22 +20,19 @@ class _LoadingScreenState extends State<LoadingScreen> {
   }
 
   void getInfo() async {
-    receivedData = await getData(widget.name);
+    receivedData = await getDataFromInternet(widget.name);
     assign();
   }
 
   void assign() {
-    setState(() {
-      plInfo = receivedData;
-    });
     // print('got data plInfo');
     // print(plInfo);
-    if (plInfo != null) {
+    if (receivedData != null) {
       Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => HomeScreen(
-            plInfo: plInfo,
+            receivedJsonData: receivedData,
             searchedName: widget.name,
           ),
         ),
