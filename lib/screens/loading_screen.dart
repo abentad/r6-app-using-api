@@ -1,4 +1,8 @@
+import 'dart:io';
+
 import "package:flutter/material.dart";
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:r6App/helpers/networking.dart';
 
 import 'home_screen.dart';
@@ -11,6 +15,7 @@ class LoadingScreen extends StatefulWidget {
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
+  Box box;
   var receivedData;
   @override
   void initState() {
@@ -19,8 +24,38 @@ class _LoadingScreenState extends State<LoadingScreen> {
     getInfo();
   }
 
+  Future openBox() async {
+    var dir = await getApplicationDocumentsDirectory();
+    Hive.init(dir.path);
+    box = await Hive.openBox('data');
+    return;
+  }
+
   void getInfo() async {
-    receivedData = await getDataFromInternet(widget.name);
+    try {
+      receivedData = await getDataFromInternet(widget.name);
+      // final result = await InternetAddress.lookup('google.com');
+      if (receivedData.isNotEmpty) {
+        print('connected');
+      }
+    } on SocketException catch (_) {
+      var dir = await getApplicationDocumentsDirectory();
+      Hive.init(dir.path);
+      box = await Hive.openBox('data');
+      await openBox();
+      var myMap = box.toMap().values.toList();
+
+      print('not connected');
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomeScreen(
+            receivedJsonData: myMap,
+            searchedName: widget.name,
+          ),
+        ),
+      );
+    }
     assign();
   }
 

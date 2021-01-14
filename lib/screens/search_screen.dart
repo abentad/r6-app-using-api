@@ -1,8 +1,7 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
-
 import 'loading_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SearchScreen extends StatefulWidget {
   @override
@@ -10,6 +9,11 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
+  addStringToSF(String value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('searchTerm', value);
+  }
+
   var _searchController = TextEditingController();
   List<AssetImage> images = [
     AssetImage("assets/bg2.png"),
@@ -109,26 +113,17 @@ class _SearchScreenState extends State<SearchScreen> {
                     borderRadius: BorderRadius.circular(50.0),
                   ),
                 ),
-                onSubmitted: (value) {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (context) => LoadingScreen(
-                  //       name: value,
-                  //     ),
-                  //   ),
-                  // );
-                  // print("pushed to loading screen name: $value");
-                },
               ),
               SizedBox(height: 20.0),
               MaterialButton(
-                onPressed: () {
+                onPressed: () async {
                   //for unfocusing the keyboard
                   FocusScopeNode currentFocus = FocusScope.of(context);
                   if (!currentFocus.hasPrimaryFocus) {
                     currentFocus.unfocus();
                   }
+                  addStringToSF(_searchController.text);
+
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -166,31 +161,3 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 }
-
-// Column(
-//         mainAxisAlignment: MainAxisAlignment.center,
-//         children: [
-//           Center(
-//             child: Container(
-//               child: Column(
-//                 children: [
-//                   TextField(
-//                     decoration: InputDecoration(),
-//                     onSubmitted: (value) {
-//                       Navigator.push(
-//                         context,
-//                         MaterialPageRoute(
-//                           builder: (context) => LoadingScreen(
-//                             name: value,
-//                           ),
-//                         ),
-//                       );
-//                       print("pushed to loading screen name: $value");
-//                     },
-//                   ),
-//                 ],
-//               ),
-//             ),
-//           ),
-//         ],
-//       ),
