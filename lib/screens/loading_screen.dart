@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:r6App/helpers/networking.dart';
-import 'package:r6App/home_screen.dart';
+
+import 'home_screen.dart';
 
 class LoadingScreen extends StatefulWidget {
   final String name;
@@ -36,6 +37,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
         MaterialPageRoute(
           builder: (context) => HomeScreen(
             plInfo: plInfo,
+            searchedName: widget.name,
           ),
         ),
       );

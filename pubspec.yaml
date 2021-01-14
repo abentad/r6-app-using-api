@@ -16,6 +16,12 @@ dependencies:
   google_fonts: ^1.1.1
   flutter_svg: any
 
+  hive: ^1.4.4+1
+  hive_flutter: ^0.3.1
+  path_provider: ^1.6.27
+
+  toast: ^0.1.5
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -1,11 +1,17 @@
-import 'dart:math';
+void main() {}
 
-void main() {
-  getNumber();
-}
-
-void getNumber() {
-  Random random = new Random();
-  int randomNumber = random.nextInt(12); // from 0 upto 11 included
-  print(randomNumber);
-}
+// void getInfo() async {
+//   var list = [];
+//   Map<String, String> plInfo = await getData("urstruly...");
+//   var mapFromList;
+//   plInfo.forEach(
+//     (k, v) => {
+//       list.add(
+//         Info(k, v),
+//       ),
+//     },
+//   );
+//   mapFromList = Map.fromIterable(list, key: (k) => k.key, value: (v) => v.val);
+//   // print(list);
+//   // print(mapFromList);
+// }

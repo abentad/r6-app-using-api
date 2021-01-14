@@ -1,7 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:r6App/loading_screen.dart';
+
+import 'loading_screen.dart';
 
 class SearchScreen extends StatefulWidget {
   @override

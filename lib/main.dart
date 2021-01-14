@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:r6App/search_screen.dart';
-import 'package:r6App/signUp_screen.dart';
+import 'package:r6App/screens/search_screen.dart';
 
-void main() {
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
-    statusBarColor: Colors.black,
-    /* set Status bar color in Android devices. */
+void main() async {
+  //for changing the status bar color
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle.dark.copyWith(
+      statusBarColor: Colors.black,
+      statusBarIconBrightness: Brightness.light,
+      statusBarBrightness: Brightness.light,
+    ),
+  );
+  //for hive initilization
+  // WidgetsFlutterBinding.ensureInitialized();
+  // Directory document = await getApplicationDocumentsDirectory();
+  // Hive.init(document.path);
+  // await Hive.openBox<Map<String, String>>("info");
 
-    statusBarIconBrightness: Brightness.light,
-    /* set Status bar icons color in Android devices.*/
-
-    statusBarBrightness: Brightness.light,
-  ) /* set Status bar icon color in iOS. */
-      );
+  //
   runApp(MyApp());
 }
 
