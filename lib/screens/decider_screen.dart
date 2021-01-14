@@ -11,6 +11,7 @@ class DeciderScreen extends StatefulWidget {
 
 class _DeciderScreenState extends State<DeciderScreen> {
   String decider;
+  //
   @override
   void initState() {
     super.initState();
@@ -28,7 +29,7 @@ class _DeciderScreenState extends State<DeciderScreen> {
     decider = await getStringValuesSF();
     setState(() {});
     print(decider);
-    Navigator.push(
+    Navigator.pushReplacement(
       context,
       MaterialPageRoute(
         builder: (context) => decider == "empty"

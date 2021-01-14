@@ -46,7 +46,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
       var myMap = box.toMap().values.toList();
 
       print('not connected');
-      Navigator.push(
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(
           builder: (context) => HomeScreen(
@@ -60,10 +60,8 @@ class _LoadingScreenState extends State<LoadingScreen> {
   }
 
   void assign() {
-    // print('got data plInfo');
-    // print(plInfo);
     if (receivedData != null) {
-      Navigator.push(
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(
           builder: (context) => HomeScreen(

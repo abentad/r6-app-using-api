@@ -124,7 +124,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   }
                   addStringToSF(_searchController.text);
 
-                  Navigator.push(
+                  Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                       builder: (context) => LoadingScreen(
