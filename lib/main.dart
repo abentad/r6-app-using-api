@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:r6App/screens/decider_screen.dart';
+import 'package:r6App/screens/signUp_screen.dart';
 
 void main() async {
   await Hive.initFlutter();
@@ -28,7 +29,7 @@ class NewApp extends StatelessWidget {
         primarySwatch: Colors.teal,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: DeciderScreen(),
+      home: SignUpScreen(),
     );
   }
 }

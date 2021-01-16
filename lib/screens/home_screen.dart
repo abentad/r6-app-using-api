@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:r6App/components/myCustomRow.dart';
+import 'package:r6App/components/overView_container.dart';
+import 'package:r6App/components/ranked_container.dart';
 import 'package:r6App/screens/search_screen.dart';
 import 'package:toast/toast.dart';
 
@@ -117,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                   } else {
                     return Container(
-                      padding: EdgeInsets.only(left: 20.0, right: 20.0),
+                      // padding: EdgeInsets.only(left: 20.0, right: 20.0),
                       height: height,
                       width: width,
                       decoration: BoxDecoration(
@@ -130,214 +131,94 @@ class _HomeScreenState extends State<HomeScreen> {
                           end: Alignment.bottomRight,
                         ),
                       ),
-                      child: SingleChildScrollView(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(height: 20.0),
-                            Row(
-                              children: [
-                                Container(
-                                  height: 60.0,
-                                  width: 60.0,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    image: DecorationImage(
-                                      image: isConnected
-                                          ? NetworkImage(
-                                              '${data[0]['plProfilePic']}',
-                                            )
-                                          : AssetImage(
-                                              'assets/noSignal.png',
-                                            ),
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(width: 10.0),
-                                Text(
-                                  '${data[0]['playerName']}',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 28.0,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ),
-                                SizedBox(width: 20.0),
-                                Container(
-                                  height: 50.0,
-                                  width: 50.0,
-                                  decoration: BoxDecoration(),
-                                  child: isConnected
-                                      ? SvgPicture.network(
-                                          data[0]['plRankPic'],
-                                          height: 400.0,
-                                          width: 400.0,
-                                        )
-                                      : Text(
-                                          "offline",
-                                          style: TextStyle(
-                                            color: Colors.white,
+                      child: ListView(
+                        // physics: BouncingScrollPhysics(),
+                        padding: EdgeInsets.only(left: 20.0, right: 20.0),
+                        // crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(height: 20.0),
+                          Row(
+                            children: [
+                              Container(
+                                height: 60.0,
+                                width: 60.0,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                    image: isConnected
+                                        ? NetworkImage(
+                                            '${data[0]['plProfilePic']}',
+                                          )
+                                        : AssetImage(
+                                            'assets/noSignal.png',
                                           ),
-                                        ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 20.0),
-                            Container(
-                              padding: EdgeInsets.all(20.0),
-                              // height: 200.0,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                color: Colors.black54,
-                                borderRadius: BorderRadius.circular(20.0),
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Overview',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 24.0,
-                                      fontWeight: FontWeight.w700,
-                                    ),
+                                    fit: BoxFit.cover,
                                   ),
-                                  SizedBox(height: 10.0),
-                                  myCustomRow(
-                                    column1Name: "Total Play time",
-                                    column1Result:
-                                        "${data[0]['plTotalPlayTime']}",
-                                  ),
-                                  SizedBox(height: 10.0),
-                                  myCustomRow(
-                                    column1Name: "Total Matches",
-                                    column1Result:
-                                        "${data[0]['plTotalMatchesPlayed']}",
-                                  ),
-                                  SizedBox(height: 10.0),
-                                  myCustomRow(
-                                    column1Name: "Total Wins",
-                                    column1Result: "${data[0]['plTotalWins']}",
-                                  ),
-                                  SizedBox(height: 10.0),
-                                  myCustomRow(
-                                    column1Name: "Total Losses",
-                                    column1Result:
-                                        "${data[0]['plTotalLosses']}",
-                                  ),
-                                  SizedBox(height: 10.0),
-                                  myCustomRow(
-                                    column1Name: "Total Kills",
-                                    column1Result: "${data[0]['plTotalKills']}",
-                                  ),
-                                  SizedBox(height: 10.0),
-                                  myCustomRow(
-                                    column1Name: "Total Deaths",
-                                    column1Result:
-                                        "${data[0]['plTotalDeaths']}",
-                                  ),
-                                  SizedBox(height: 10.0),
-                                  myCustomRow(
-                                    column1Name: "Total KD",
-                                    column1Result: "${data[0]['plTotalKD']}",
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(height: 20.0),
-                            Container(
-                              padding: EdgeInsets.all(20.0),
-                              // height: 200.0,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                color: Colors.black54,
-                                borderRadius: BorderRadius.circular(20.0),
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Ranked',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 24.0,
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ),
-                                  SizedBox(height: 10.0),
-                                  myCustomRow(
-                                    column1Name: "Ranked KD",
-                                    column1Result: "${data[0]['plRankedKd']}",
-                                  ),
-                                  SizedBox(height: 10.0),
-                                  myCustomRow(
-                                    column1Name: "Ranked Deaths",
-                                    column1Result:
-                                        "${data[0]['plRankedDeaths']}",
-                                  ),
-                                  SizedBox(height: 10.0),
-                                  myCustomRow(
-                                    column1Name: "Ranked Kills",
-                                    column1Result:
-                                        "${data[0]['plRankedKills']}",
-                                  ),
-                                  SizedBox(height: 10.0),
-                                  myCustomRow(
-                                    column1Name: "Ranked Matches",
-                                    column1Result:
-                                        "${data[0]['plRankedMatches']}",
-                                  ),
-                                  SizedBox(height: 10.0),
-                                  myCustomRow(
-                                    column1Name: "Ranked Wins",
-                                    column1Result: "${data[0]['plRankedWins']}",
-                                  ),
-                                  SizedBox(height: 10.0),
-                                  myCustomRow(
-                                    column1Name: "Ranked Losses",
-                                    column1Result:
-                                        "${data[0]['plRankedLosses']}",
-                                  ),
-                                  SizedBox(height: 10.0),
-                                  myCustomRow(
-                                    column1Name: "Rank",
-                                    column1Result: "${data[0]['plRankText']}",
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(height: 50.0),
-                            MaterialButton(
-                              onPressed: () async {
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => SearchScreen(),
-                                  ),
-                                );
-                              },
-                              shape: StadiumBorder(
-                                side: BorderSide(
-                                  color: Colors.black,
-                                  width: 2.0,
                                 ),
                               ),
-                              height: 60.0,
-                              minWidth: double.infinity,
-                              color: Colors.white,
-                              child: Text(
-                                "Search",
+                              SizedBox(width: 10.0),
+                              Text(
+                                '${data[0]['playerName']}',
                                 style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 20.0,
+                                  color: Colors.white,
+                                  fontSize: 28.0,
                                   fontWeight: FontWeight.w700,
                                 ),
                               ),
+                              SizedBox(width: 20.0),
+                              Container(
+                                height: 50.0,
+                                width: 50.0,
+                                decoration: BoxDecoration(),
+                                child: isConnected
+                                    ? SvgPicture.network(
+                                        data[0]['plRankPic'],
+                                        height: 400.0,
+                                        width: 400.0,
+                                      )
+                                    : Text(
+                                        "offline",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 20.0),
+                          overViewContainer(data),
+                          SizedBox(height: 20.0),
+                          rankedContainer(data),
+                          SizedBox(height: 50.0),
+                          MaterialButton(
+                            onPressed: () async {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => SearchScreen(),
+                                ),
+                              );
+                            },
+                            shape: StadiumBorder(
+                              side: BorderSide(
+                                color: Colors.black,
+                                width: 2.0,
+                              ),
                             ),
-                            SizedBox(height: 20.0),
-                          ],
-                        ),
+                            height: 60.0,
+                            minWidth: double.infinity,
+                            color: Colors.white,
+                            child: Text(
+                              "Search",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 20.0),
+                        ],
                       ),
                     );
                   }
