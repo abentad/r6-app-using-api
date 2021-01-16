@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:r6App/helpers/shared_prefs.dart';
-import 'package:r6App/screens/search_screen.dart';
+import 'package:r6App/screens/signUp_screen.dart';
 import 'loading_screen.dart';
 
 class DeciderScreen extends StatefulWidget {
@@ -25,7 +25,7 @@ class _DeciderScreenState extends State<DeciderScreen> {
       context,
       MaterialPageRoute(
         builder: (context) => decider == "empty"
-            ? SearchScreen()
+            ? SignUpScreen()
             : LoadingScreen(
                 name: decider,
               ),

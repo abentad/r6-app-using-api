@@ -118,7 +118,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                   } else {
                     return Container(
-                      // padding: EdgeInsets.only(left: 20.0, right: 20.0),
                       height: height,
                       width: width,
                       decoration: BoxDecoration(
