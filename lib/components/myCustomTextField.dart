@@ -12,7 +12,7 @@ TextField myCustomTextField(TextEditingController controller) {
     ),
     decoration: InputDecoration(
       prefixIcon: Icon(Icons.account_box),
-      hintText: "Enter name",
+      hintText: "Uplay name",
       hintStyle: TextStyle(
         color: Colors.grey,
         fontSize: 18.0,
